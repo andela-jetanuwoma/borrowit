@@ -1,0 +1,86 @@
+$primary-color: #22272b;
+$font-family: 'Montserrat', sans-serif;
+$primary-text-color: #e1e1e1;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,200i,400,400i,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  font-weight: 200;
+  background: $primary-color;
+}
+
+.main-page {
+    background: $primary-color;
+
+    .main-header {
+      width: 100%;
+      height: 75px;
+      border: 3px solid #2c343a;
+      overflow: hidden;
+
+      .logo-holder {
+        border-right: 3px solid #2c343a;
+        font-family: $font-family;
+        color: #fff;
+
+        img {
+          width: 42px;
+          height: 42px;
+          margin-top: 12px;
+          margin-right: 10px;
+          margin-left: 20px;
+          float: left;
+        }
+
+        h2 {
+          margin-top: 10px;
+          margin-bottom: 1px;
+          font-family: $font-family;
+          font-weight: 200;
+          color: $primary-text-color;
+          font-size: 23px;
+        }
+
+        span {
+          font-size: 10px;
+          color: #586874;
+        }
+      }
+    }
+
+    .main-wrapper {
+      width: 40%;
+      min-height: 400px;
+      margin: 50px auto;
+
+      h2 {
+        text-align: center;
+        color: $primary-text-color;
+        font-family: $font-family;
+        font-weight: 100;
+      }
+
+      .login-pane {
+        width: 100%;
+        min-height: 300px;
+        background-color: #262E33;
+        border: 2px solid #303a40;
+        border-top: 5px solid #5940b5;
+        border-radius: 6px;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        display: flex;
+  
+        a {
+          text-align: center;
+          margin: auto;
+          color: #fff;
+        }
+      }
+    }
+
+  
+}
