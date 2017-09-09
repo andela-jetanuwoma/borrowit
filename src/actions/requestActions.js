@@ -10,15 +10,32 @@ export function getBorrowRequestsSuccessful(requests) {
   }
 }
 
+export function sendBorrowRequestSuccess(item) {
+  return {
+    type: actionTypes.SEND_BORROW_REQUEST_SUCCESS,
+    item
+  }
+}
+
 export function getBorrowRequests() {
   return (dispatch) => {
-    return axios.get('api/requests')
+    return axios.get('/api/requests')
       .then((data) => {
-        console.log(data.data);
         dispatch(getBorrowRequestsSuccessful(data.data));
       })
       .catch((error) => {
-        console.log(error);
+      });
+  }
+}
+
+export function sendBorrowRequest(item) {
+  return (dispatch) => {
+    return axios.post('/api/request', item)
+      .then((data) => {
+        dispatch(sendBorrowRequestSuccess(data));
+      })
+      .catch((error) => {
+
       });
   }
 }

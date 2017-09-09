@@ -7,9 +7,7 @@ import Header from '../commons/Header';
 import { getBorrowRequests } from '../../actions/requestActions';
 import '../../assets/styles/dashboard.css';
 import requestLogo from '../../assets/images/request.svg';
-
-
-
+import displayRequests from './displayRequests';
 
 class Dashboard extends Component {
 
@@ -38,47 +36,23 @@ class Dashboard extends Component {
   render() {
     const { requests } = this.state;
     return (
-      <div className="row main-page">
-        <Header
-          isLoggedIn={this.props.isAuthenticated}
-          user={this.props.user}
-          notifications={this.props.notifications}
-        />
-        <div className="contentWrapper">
-          <div className="row">
-            <div className="col-md-8">
-              <h1>Borrow Request</h1>
-              <h4>What do you want to lease</h4>
-              <div className="row">
-                {requests.map((request, index) => (
-                  <div className="col-md-6" key={`request_${index}`}>
-                    <div className="request-card">
-                      <img src={requestLogo} className="request-logo" />
-                      <h5>{request.fullName}</h5>
-                      <p>{request.slackHandle}</p>
-                      <span className="item">{request.itemName}</span>
-                      <div className="request-action row">
-                        <a className="btn-accept col-sm-6 col-xs-12"><i className="fa fa-check" aria-hidden="true"></i> Accept</a>
-                        <a className="btn-message col-sm-6 col-xs-12"><i className="fa fa-info" aria-hidden="true"></i><span data-tip={request.description}>Details</span></a>
-                        <ReactTooltip />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="pending-request">
-                <h2>Pending Requests</h2>
-              </div>
-            </div>
+      <div className="row dashboardWrapper">        
+        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <h1>Request</h1>
+          <h4>What do you want to lease</h4>
+          {requests.map(displayRequests)}
+        </div>
+          
+        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <div className="pending-request">
+            <h2>Pending Requests</h2>
           </div>
-
         </div>
       </div>
     );
   }
 }
+
 
 Dashboard.propTypes = {
   requests: PropTypes.array.isRequired,

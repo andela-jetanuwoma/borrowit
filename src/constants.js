@@ -5,4 +5,5 @@ export default keymirror({
   LOGIN_USER: null,
   GET_BORROW_REQUEST_SUCCESS: null,
   LOG_USER_OUT: null,
+  SEND_BORROW_REQUEST_SUCCESS: null,
 });
