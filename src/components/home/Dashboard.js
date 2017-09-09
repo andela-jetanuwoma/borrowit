@@ -4,48 +4,132 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip'
 import Header from '../commons/Header';
-import { getBorrowRequests } from '../../actions/requestActions';
+import Notifications from 'react-notification-system-redux';
+import { getBorrowRequests, acceptBorrowRequest, getLeasedItems } from '../../actions/requestActions';
 import '../../assets/styles/dashboard.css';
+import { fadeInDown } from 'react-animations'
 import requestLogo from '../../assets/images/request.svg';
-import displayRequests from './displayRequests';
+import DisplayRequest from './displayRequests';
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = { requests: this.props.requests, isRequesting: true }
+    this.state = {
+      requests: this.props.requests,
+      leasedItems: this.props.leasedItems,
+      isRequesting: true,
+      ownerComment: '',
+    }
+
+    this.acceptRequest = this.acceptRequest.bind(this);
+    this.sendRequest = this.sendRequest.bind(this);
+    this.onCommentChange = this.onCommentChange.bind(this);
   }
 
   componentDidMount() {
     $('.tooltips').tooltipster({
-        theme: 'tooltipster-noir'
+      theme: 'tooltipster-noir'
     });
+
+    $('.notification-success')
     this.props.getBorrowRequests()
       .then(() => {
         this.setState({ isRequesting: false });
       });
+
+    this.props.getLeasedItems()
+      .then(() => {
+
+      });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.requests) {
-      this.setState({ requests: nextProps.requests });
+    if (nextProps) {
+      this.setState({ requests: nextProps.requests, leasedItems: nextProps.leasedItems });
     }
+  }
+
+  onCommentChange(event) {
+    this.setState({ ownerComment: event.target.value });
+  }
+
+  sendRequest(request) {
+    this.props.acceptBorrowRequest(request)
+      .then(() => {
+      })
+  }
+
+
+  acceptRequest(request) {
+    
+    console.log(request); 
+    const notificationOpts = {
+      title: 'Great job!',
+      children:
+      (<div className="note-action">
+        <div>
+          <p>A notification will be sent to {request.slackHandle} you can send some message now</p>
+        </div>
+        <textarea type="text" onChange={this.onCommentChange} className="reason-form" autoFocus="true" ></textarea>
+        <div className="container-inline">
+          <a className="btn btn-success" onClick={() => this.sendRequest(request)}>Send</a>
+          <a className="btn btn-warning float-right" onClick={() => console.log('sent')}>Cancel</a>
+        </div>
+      </div>),
+      position: 'tr',
+      autoDismiss: 0,
+      action: {
+        label: 'Am Giving!',
+        callback: () => alert('clicked!')
+      }
+    }
+    console.log(this.context.store);
+    this.context.store.dispatch(Notifications.success(notificationOpts));
   }
 
   render() {
     const { requests } = this.state;
     return (
-      <div className="row dashboardWrapper">        
+      <div className="row dashboardWrapper">
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <h1>Request</h1>
-          <h4>What do you want to lease</h4>
-          {requests.map(displayRequests)}
+          <h4 onClick={() => this.acceptRequest({})}>What do you want to lease</h4>
+          {requests.map((request, index ) =>
+          (
+            <DisplayRequest
+              key={`ite,dec+ `}
+              fullName={request.fullName}
+              slackHandle={request.slackHandle}
+              itemName={request.itemName}
+              description={request.description}
+              acceptRequest={this.acceptRequest}
+              request={request}
+              key={`${index}_index`}/>
+          ))}
         </div>
-          
-        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+        <div className="col-md-4 side-bar">
           <div className="pending-request">
-            <h2>Pending Requests</h2>
+            <h2>Leased Items</h2>
+            <ul>
+              {this.state.leasedItems.map((item, index) => (
+                <li key={`item_${index}_hjds`}>
+                  <a className="request-item">
+                    <span className="employees-item-img">
+                      <img src={requestLogo} alt="User avatar" />
+                    </span>
+                    <div className="request-block">
+                      <div className="request-name">{item.fullName}
+                      </div>
+                      <div className="request-itemSlack">{item.slackHandle}</div>
+                      <div className="request-itemName">{item.itemName}</div>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -59,7 +143,13 @@ Dashboard.propTypes = {
   user: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   getBorrowRequests: PropTypes.func.isRequired,
+  acceptBorrowRequest: PropTypes.func.isRequired,
+  getLeasedItems: PropTypes.func.isRequired,
+  leasedItems: PropTypes.array.isRequired,
+}
 
+Dashboard.contextTypes = {
+  store: PropTypes.object,
 }
 
 function mapStateToProps(state) {
@@ -67,8 +157,16 @@ function mapStateToProps(state) {
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
     requests: state.borrowRequests.requests,
+    leasedItems: state.borrowRequests.leasedItems,
     notifications: state.notifications,
+    
   };
 }
 
-export default connect(mapStateToProps, { getBorrowRequests })(Dashboard);
+const mapPropsToDispatch = ({
+  getBorrowRequests,
+  acceptBorrowRequest,
+  getLeasedItems,
+});
+
+export default connect(mapStateToProps, mapPropsToDispatch)(Dashboard);

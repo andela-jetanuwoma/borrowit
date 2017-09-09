@@ -11,7 +11,7 @@ export default (
   <Route>
     <Route path="/" component={App}>
        <IndexRoute component={LandingPage} />
-       <Route path="/requests" component={Dashboard} />
+       <Route path="/dashboard" component={Dashboard} />
     </Route>
   </Route>
 );

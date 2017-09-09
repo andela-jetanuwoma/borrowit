@@ -16,15 +16,14 @@ class LandingPage extends Component {
   }
 
   componentDidMount() {
-    //some action goes in here
     if (this.props.isAuthenticated) {
-      this.context.router.push('/requests');
+      this.context.router.push('/dashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isAuthenticated) {
-      this.context.router.push('/requests');
+      this.context.router.push('/dashboard');
     }
   }
 

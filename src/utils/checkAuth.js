@@ -1,6 +1,4 @@
 /* global localStorage */
-import axios from 'axios';
-import jwtDecode from 'jwt-decode';
 import { setLoggedInUser } from '../actions/userActions';
 
 export default (store) => {
