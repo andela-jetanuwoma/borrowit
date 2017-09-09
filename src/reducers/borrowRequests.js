@@ -9,6 +9,13 @@ export default function borrowRequests(state = initialState.borrowRequests, acti
         requests: [...action.requests]
       }
 
+    case actionTypes.SEND_BORROW_REQUEST_SUCCESS:
+      return {
+        ...state,
+        requests: [...state.requests, action.item],
+        myRequests: [...state.myRequests, action.item]
+      };
+      
     default:
       return state;
   }

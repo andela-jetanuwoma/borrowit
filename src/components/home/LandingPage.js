@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import { loginUser } from '../../actions/userActions';
 import Header from '../commons/Header';
 
@@ -29,12 +30,11 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div className="row main-page">
-        <Header notifications={this.props.notifications}/>
-        <div className="container main-wrapper">
+      <div className="row">
+        <div className="main-wrapper">
           <h2>Login to access your account</h2>
           <div className="login-pane">
-            <a className="btn btn-primary btn-lg btn-block" onClick={this.props.loginUser}><i className="fa fa-google"></i>Login with google</a>
+            <Link className="btn btn-primary btn-lg btn-block" onClick={this.props.loginUser}><i className="fa fa-slack"></i> Login with slack</Link>
           </div>
         </div>
       </div>

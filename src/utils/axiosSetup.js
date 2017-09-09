@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 instance.get = (url) => {
-  if (url === 'api/requests') {
+  if (url === '/api/requests') {
     return Promise.resolve({
       data: [
         {
@@ -26,9 +26,54 @@ instance.get = (url) => {
           itemName: 'Car',
           ownerComment: 'Please return as given no glitch biko',
           description: 'A brand new toyota highlander'
+        },
+        {
+          id: 2,
+          fullName: 'Demilade Mary',
+          slackHandle: '@marydemi',
+          itemName: 'Car',
+          ownerComment: 'Please return as given no glitch biko',
+          description: 'A brand new toyota highlander'
+        },
+        {
+          id: 2,
+          fullName: 'Demilade Mary',
+          slackHandle: '@marydemi',
+          itemName: 'Car',
+          ownerComment: 'Please return as given no glitch biko',
+          description: 'A brand new toyota highlander'
+        },
+        {
+          id: 2,
+          fullName: 'Demilade Mary',
+          slackHandle: '@marydemi',
+          itemName: 'Car',
+          ownerComment: 'Please return as given no glitch biko',
+          description: 'A brand new toyota highlander'
+        },
+        {
+          id: 2,
+          fullName: 'Demilade Mary',
+          slackHandle: '@marydemi',
+          itemName: 'Car',
+          ownerComment: 'Please return as given no glitch biko',
+          description: 'A brand new toyota highlander'
         }
       ]
     });
+  }
+}
+
+instance.post = (url) => {
+  if (url === '/api/request') {
+    return Promise.resolve({
+      id: Date.now(),
+      fullName: 'Joshua Udensi',
+      slackHandle: '@silicon_valley',
+      itemName: 'Thor\s Hammer',
+      ownerComment: 'If you spoil am, oyinbo rekpete',
+      description: 'Thor\'s Hammer'
+    })
   }
 }
 
