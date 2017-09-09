@@ -4,7 +4,8 @@ export default {
         isAuthenticated: false
     },
 
-    requests: {
-
+    borrowRequests: {
+        requests: [],
+        myRequests: [],
     }
 }

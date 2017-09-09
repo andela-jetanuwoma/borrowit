@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/userActions';
 import Header from '../commons/Header';
-import './index.css';
 
 class LandingPage extends Component {
   constructor(props) {
@@ -18,20 +17,20 @@ class LandingPage extends Component {
   componentDidMount() {
     //some action goes in here
     if (this.props.isAuthenticated) {
-      this.context.router.push('/home');
+      this.context.router.push('/requests');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isAuthenticated) {
-      this.context.router.push('/home');
+      this.context.router.push('/requests');
     }
   }
 
   render() {
     return (
       <div className="row main-page">
-        <Header />
+        <Header notifications={this.props.notifications}/>
         <div className="container main-wrapper">
           <h2>Login to access your account</h2>
           <div className="login-pane">
@@ -55,6 +54,7 @@ LandingPage.propTypes = {
 const mapStateToProps = state => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
+   notifications: state.notifications,
 });
 
 

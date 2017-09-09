@@ -1,0 +1,91 @@
+.contentWrapper {
+  margin: 35px 82px 110px 82px;
+  color: #e1e1e1;
+  font-weight: 200;
+  max-width: 1800px;
+  display: block;
+  transition-duration: 0.4s;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 200;
+    margin-bottom: 0;
+    padding: 5px;
+    border-left: 3px solid #5940b5;
+  }
+  
+  h4 {
+    font-size: 16px;
+    color: #586874;
+    margin-bottom: 40px;
+  }
+
+  .request-card {
+    min-height: 300px;
+    background-color: #262E33;
+    border: 2px solid #303a40;
+    border-top: 5px solid #5940b5;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 20px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    h5 {
+      margin: 25px 0 10px 0;
+      font-size: 18px;
+      background: inherit;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-weight: 400;
+      color: #617582;
+      background: inherit;
+    }
+
+    .item {
+      font-size: 14px;
+      color: #ff6060;
+      background: inherit;
+    }
+
+    .request-action {
+      margin-top: 30px;
+      margin-left: 0;
+      margin-right: 0;
+
+      .btn-accept {
+        border-top: 2px solid #364148;
+        border-right: 2px solid #364148;
+      }
+
+      .btn-message {
+        border-top: 2px solid #364148;
+        border-right: 2px solid #364148;
+      }
+    }
+  }
+
+  .pending-request {
+    margin: 0 -15px 30px -15px;
+
+    h2 {
+      background-color: #6639b4;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 200;
+    }
+  }
+
+}
