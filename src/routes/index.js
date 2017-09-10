@@ -15,8 +15,8 @@ import App from '../components/App';
 export default (
   <Route>
     <Route path="/" component={App}>
-       <IndexRoute component={LandingPage} />
-       <Route path="/dashboard" component={Dashboard} />
+       <IndexRoute component={PreventAuthenticatedUsers(LandingPage)} />
+       <Route path="/dashboard" component={RequireAuthentication(Dashboard)} />
     </Route>
   </Route>
 );

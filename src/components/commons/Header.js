@@ -53,8 +53,8 @@ class Header extends Component {
         <ul className="nav navbar-nav user-details">
           <li className="dropdown">
             <a className="dropdown-toggle profile-details" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <div className="img-rounded profile-img"></div>
-              <span>User Name </span><span className="caret"></span>
+              <img src={this.props.user.profile_image} alt={this.props.user.name} className="img-rounded profile-img" />
+              <span className="text-capitalize">{this.props.user.name}</span><span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
               <li role="separator" className="divider"></li>
