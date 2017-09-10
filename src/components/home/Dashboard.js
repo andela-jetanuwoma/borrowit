@@ -96,6 +96,8 @@ class Dashboard extends Component {
 
   render() {
     const { requests } = this.state;
+
+    console.log(this.props.user, ' user in dashboard');
     return (
       <div className="row dashboardWrapper">
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -163,7 +165,7 @@ Dashboard.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
+    user: state.auth.user.data,
     isAuthenticated: state.auth.isAuthenticated,
     requests: state.borrowRequests.requests,
     leasedItems: state.borrowRequests.leasedItems,
