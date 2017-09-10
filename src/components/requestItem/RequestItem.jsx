@@ -80,9 +80,9 @@ class RequestItem extends Component {
                   
                   <AddForm addNewForm={this.addNewForm} showAddButton={this.state.showAddButton}  />
                   { !this.state.showAddButton &&  <RequestForm onChange={this.onChange} saveItem={this.saveItem} /> }
-
+                  <div className="row">
                   { this.state.items.length > 0 && this.state.items.map(DisplayRequest) }
-                
+                   </div>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={() => this.sendRequest()}>Send Request</button>

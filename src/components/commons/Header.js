@@ -19,13 +19,13 @@ class Header extends Component {
     store.dispatch(setLoggedInUser(null));
   }
 
-  render () {
+  render() {
 
     const style = {
       NotificationItem: { // Override the notification item
-          DefaultStyle: { // Applied to every notification, regardless of the notification level
-              margin: '10px 5px 2px 1px',
-          },
+        DefaultStyle: { // Applied to every notification, regardless of the notification level
+          margin: '10px 5px 2px 1px',
+        },
       },
     };
 
@@ -50,9 +50,20 @@ class Header extends Component {
             />
           </Link>
         </li>
-        <li className="nav-item">
-          <button className="btn btn-default btn-logout" onClick={() => this.logout()}>Logout</button>
-        </li>
+        <ul className="nav navbar-nav user-details">
+          <li className="dropdown">
+            <a className="dropdown-toggle profile-details" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <div className="img-rounded profile-img"></div>
+              <span>User Name </span><span className="caret"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <li role="separator" className="divider"></li>
+              <li>
+                <button className="btn btn-default" onClick={() => this.logout()}>Logout</button>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </ul>
     );
 
@@ -62,24 +73,24 @@ class Header extends Component {
           <Link className="navbar-brand" to="/">
             <div className="logo-holder">
               <img src={logo} className="nav-bar-logo" alt="logo" />
-              <h5 className="logo-name">BorrowIt</h5>
+              <h5 className="logo-name">BorrowIT</h5>
               <span className="slogan">Uber for borrowing stuff</span>
             </div>
           </Link>
         </div>
-        
+
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-  
+
         <div className="col-10 nav-menu">
-          <div className="collapse navbar-collapse" id="navbarNav" style={{float:'right'}}>
+          <div className="collapse navbar-collapse" id="navbarNav" style={{ float: 'right' }}>
             {
-              this.props.isAuthenticated && authLinks
+              !this.props.isAuthenticated && authLinks
             }
           </div>
         </div>
-        
+
       </nav>
     );
   }
