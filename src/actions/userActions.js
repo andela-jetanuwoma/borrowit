@@ -17,7 +17,6 @@ export function getUserInformation() {
         dispatch(setLoggedInUser(user.data));
       })
       .catch((error) => {
-        console.log(error, ' my error')
       })
   }
 }

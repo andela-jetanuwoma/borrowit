@@ -107,7 +107,7 @@ class Dashboard extends Component {
           (
             <DisplayRequest
               key={`ite,dec+ `}
-              fullName={request.fullName}
+              fullName={props.user.name}
               slackHandle={request.slackHandle}
               itemName={request.itemName}
               description={request.description}

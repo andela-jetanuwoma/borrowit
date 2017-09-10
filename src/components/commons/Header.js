@@ -14,6 +14,10 @@ class Header extends Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentWillRecieveProps(nextProps) {
+    console.log(nextProps);
+  }
+
   logout() {
     window.localStorage.clear();
     store.dispatch(setLoggedInUser(null));
