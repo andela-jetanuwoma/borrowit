@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 // instance.get = (url) => {
-//   if (url === '/api/requests') {
+//   if (url === '/requests') {
 //     return Promise.resolve({
 //       data: [
 //         {
@@ -61,7 +61,7 @@ const instance = axios.create({
 //         }
 //       ]
 //     });
-//   } else if (url === '/api/requests/1/leased') {
+//   } else if (url === '/requests/leased') {
 //       return Promise.resolve({
 //         data: [
 //           {
@@ -82,7 +82,7 @@ const instance = axios.create({
 //           }
 //         ]
 //     });
-//   } else if(url === '/api/users/me') {
+//   } else if(url === '/users/me') {
 //     return Promise.resolve({
 //       name: 'Joshua Udensi',
 //       email: 'joshua.udensi@andela.com',
@@ -93,7 +93,7 @@ const instance = axios.create({
 // }
 
 // instance.post = (url) => {
-//   if (url === '/api/request') {
+//   if (url === '/request') {
 //     return Promise.resolve({
 //       id: Date.now(),
 //       fullName: 'Joshua Udensi',
@@ -102,7 +102,7 @@ const instance = axios.create({
 //       ownerComment: 'If you spoil am, oyinbo rekpete',
 //       description: 'Thor\'s Hammer'
 //     });
-//   } else if (url === '/api/request/1/accept') {
+//   } else if (url === '/request/1/accept') {
 //     return Promise.resolve(1);
 //   }
 // }
@@ -110,7 +110,7 @@ const instance = axios.create({
 const setAuthorizationToken = (token) => {
   const defaultHeaders = instance.defaults.headers.common || {};
   
-  defaultHeaders['Access-Control-Allow-Origin'] = 'https://borrowit-pr-6.herokuapp.com/';
+  defaultHeaders['Access-Control-Allow-Origin'] = 'https://borrowit.herokuapp.com/';
 
   if (token) {
     defaultHeaders.authorization = `Bearer ${token}`;

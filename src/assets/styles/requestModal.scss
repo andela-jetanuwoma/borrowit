@@ -15,3 +15,24 @@
 .modal-backdrop {
   z-index: 9;
 }
+
+.new-request-item {
+  background: #e8ebec;
+  padding: 10px;
+  border-radius: 8px;
+  line-height: 1;
+  margin: 2px;
+
+  h4 {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  p {
+    font-weight: 200;
+    font-family: $font-family;
+    font-size: 11px;
+  }
+}
