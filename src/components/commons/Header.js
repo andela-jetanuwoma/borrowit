@@ -86,7 +86,7 @@ class Header extends Component {
         <div className="col-10 nav-menu">
           <div className="collapse navbar-collapse" id="navbarNav" style={{ float: 'right' }}>
             {
-              !this.props.isAuthenticated && authLinks
+              this.props.isAuthenticated && authLinks
             }
           </div>
         </div>
