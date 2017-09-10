@@ -1,5 +1,4 @@
 import axios from '../utils/axiosSetup';
-import toastr from 'toastr';
 import actionTypes from '../constants';
 
 

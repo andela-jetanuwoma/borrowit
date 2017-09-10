@@ -6,7 +6,7 @@ const displayRequests = (request, index) => {
   return (
     <div className="col-md-4 float-left" key={`request_${index}`}>
       <div className="request-card">
-        <img src={requestLogo} className="request-logo" />
+        <img src={requestLogo} className="request-logo" alt={request.fullName} />
         <h5>{request.fullName}</h5>
         <p>{request.slackHandle}</p>
         <span className="item">{request.itemName}</span>

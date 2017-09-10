@@ -2,11 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip'
-import Header from '../commons/Header';
 import { getBorrowRequests } from '../../actions/requestActions';
 import '../../assets/styles/dashboard.css';
-import requestLogo from '../../assets/images/request.svg';
 import displayRequests from './displayRequests';
 
 class Dashboard extends Component {

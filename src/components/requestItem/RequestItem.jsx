@@ -29,7 +29,7 @@ class RequestItem extends Component {
     return this.setState({
       showAddButton: false
     }, () => {
-
+      return '';
     });
   }
 
@@ -42,7 +42,7 @@ class RequestItem extends Component {
       showAddButton: true,
     }, () => {
       // Alert to user success in saving
-      
+      return '';
     });
 
   }
