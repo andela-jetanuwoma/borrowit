@@ -11,7 +11,6 @@ export default function userReducer(state = initialState.auth, action) {
         isAuthenticated: !isEmpty(action.user),
         error: {},
       };
-
     default:
       return state;
   }

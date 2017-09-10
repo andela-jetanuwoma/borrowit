@@ -12,10 +12,9 @@ export function getUserInformation() {
   return (dispatch) => {
     return axios.get('/users/me')
       .then((user) => {
-        dispatch(setLoggedInUser(user));
+        dispatch(setLoggedInUser(user.data));
       })
       .catch((error) => {
-        console.log(error, ' my error')
       })
   }
 }
