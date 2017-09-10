@@ -35,7 +35,6 @@ export function getBorrowRequests() {
     return axios.get('/requests')
       .then((data) => {
         dispatch(getBorrowRequestsSuccessful(data.data));
-        return Promise.resolve();
       })
       .catch((error) => {
       });
@@ -46,7 +45,8 @@ export function sendBorrowRequest(item) {
   return (dispatch) => {
     return axios.post('/requests', item)
       .then((data) => {
-        dispatch(sendBorrowRequestSuccess(data));
+        console.log(data);
+        dispatch(sendBorrowRequestSuccess(item));
       })
       .catch((error) => {
 
