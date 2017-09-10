@@ -19,7 +19,6 @@ class LandingPage extends Component {
   componentDidMount() {
     if (this.props.location.query.token) {
       window.localStorage.setItem('x-borrowIt-auth', this.props.location.query.token);
-      window.location.reload();
     }
   }
 
