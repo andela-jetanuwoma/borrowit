@@ -9,10 +9,12 @@ export function setLoggedInUser(user) {
 }
 
 export function getUserInformation() {
+  console.log('begining get user info');
   return (dispatch) => {
     return axios.get('/users/me')
       .then((user) => {
-        dispatch(setLoggedInUser(user));
+        console.log(user);
+        dispatch(setLoggedInUser(user.data));
       })
       .catch((error) => {
         console.log(error, ' my error')

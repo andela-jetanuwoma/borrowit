@@ -12,6 +12,7 @@ export default function userReducer(state = initialState.auth, action) {
         error: {},
       };
 
+
     default:
       return state;
   }

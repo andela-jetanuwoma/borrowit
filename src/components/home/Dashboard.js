@@ -96,6 +96,8 @@ class Dashboard extends Component {
 
   render() {
     const { requests } = this.state;
+
+    console.log(this.props.user);
     return (
       <div className="row dashboardWrapper">
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">

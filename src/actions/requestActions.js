@@ -34,8 +34,7 @@ export function getBorrowRequests() {
   return (dispatch) => {
     return axios.get('/requests')
       .then((data) => {
-        console.log(data, ' get request');
-        dispatch(getBorrowRequestsSuccessful(data.data));
+        dispatch(getBorrowRequestsSuccessful(data.data.data));
         return Promise.resolve();
       })
       .catch((error) => {
@@ -47,7 +46,6 @@ export function sendBorrowRequest(item) {
   return (dispatch) => {
     return axios.post('/requests', item)
       .then((data) => {
-        console.log(data, ' send request');
         dispatch(sendBorrowRequestSuccess(item));
       })
       .catch((error) => {
@@ -71,8 +69,7 @@ export function getLeasedItems() {
   return (dispatch) => {
     return axios.get('/requests/leased')
       .then((data) => {
-        console.log(data, ' get leased');        
-        dispatch(getLeasedItemsSuccessful(data.data));
+        dispatch(getLeasedItemsSuccessful(data.data.data));
       })
       .catch((error) => {
       })
