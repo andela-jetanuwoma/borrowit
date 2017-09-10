@@ -34,6 +34,7 @@ export function getBorrowRequests() {
   return (dispatch) => {
     return axios.get('/requests')
       .then((data) => {
+        console.log(data);
         dispatch(getBorrowRequestsSuccessful(data.data));
       })
       .catch((error) => {
@@ -69,6 +70,7 @@ export function getLeasedItems() {
   return (dispatch) => {
     return axios.get('/requests/leased')
       .then((data) => {
+        console.log(data);        
         dispatch(getLeasedItemsSuccessful(data.data));
       })
       .catch((error) => {
