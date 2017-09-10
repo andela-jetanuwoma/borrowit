@@ -165,7 +165,7 @@ Dashboard.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
+    user: state.auth.user.data,
     isAuthenticated: state.auth.isAuthenticated,
     requests: state.borrowRequests.requests,
     leasedItems: state.borrowRequests.leasedItems,

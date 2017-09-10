@@ -13,7 +13,6 @@ export function getUserInformation() {
   return (dispatch) => {
     return axios.get('/users/me')
       .then((user) => {
-        console.log(user);
         dispatch(setLoggedInUser(user.data));
       })
       .catch((error) => {
