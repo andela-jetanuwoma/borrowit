@@ -5,7 +5,7 @@ const AddForm = (props) => {
     <div>
       {
         props.showAddButton &&
-        <button className="btn btn-primary" onClick={() => props.addNewForm()}>
+        <button className="btn btn-primary site-color" onClick={() => props.addNewForm()}>
           <i className="fa fa-plus" />
         </button>
       }

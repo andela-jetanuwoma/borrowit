@@ -66,11 +66,13 @@
       .btn-accept {
         border-top: 2px solid #364148;
         border-right: 2px solid #364148;
+        color: #617582;
       }
 
       .btn-message {
         border-top: 2px solid #364148;
         border-right: 2px solid #364148;
+        color: #617582;
       }
     }
   }
@@ -87,5 +89,96 @@
       font-weight: 200;
     }
   }
-
 }
+
+.note-action {
+  padding: 0px auto;
+  min-height: 100px;
+
+  .container-inline {
+    padding: 10px;
+
+    .btn {
+      height: 30px;
+      width: 70px;
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+
+  input:focus {
+    border: none;
+    box-shadow: none;
+    padding: 10px;
+    height: 30px;
+    width: 100%;
+  }
+}
+
+.pending-request {
+  max-height: 300px;
+  overflow-y: scroll;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      background-color: #262e33;
+      height: auto;
+      line-height: 40px;
+      padding: 10px;
+      color: #6a7882;
+
+      a {
+        color: #fff;
+        font-weight: 200;
+        padding: 0;
+
+        .request-block {
+          display: inline-block;
+          margin-left: 2%;
+
+          .request-name {
+            font-size: 16px;
+            color: #e1e1e1;
+            display: block;
+            margin-top: -4px;
+          }
+
+          .request-itemSlack {
+            margin-top: -16px;
+            color: #66767d;
+            font-weight: 400;
+          }
+
+          .request-itemName {
+            float: left;
+            font-size: 14px;
+            font-weight: 400;
+            color: #9ebdd4;
+            margin-bottom: -5px;
+            margin-top: -17px;
+          }
+        }
+      }
+
+      img {
+        overflow: hidden;
+        float: left;
+        margin: 4px;
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    li:nth-child(2n) {
+      background-color: #313b42;
+    }
+  }
+}
+
+.side-bar {
+  margin-top: 70px;
+}
+

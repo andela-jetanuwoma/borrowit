@@ -7,5 +7,6 @@ export default {
     borrowRequests: {
         requests: [],
         myRequests: [],
+        leasedItems: [],
     }
 }
