@@ -36,6 +36,7 @@ export function getBorrowRequests() {
       .then((data) => {
         console.log(data, ' get request');
         dispatch(getBorrowRequestsSuccessful(data.data));
+        return Promise.resolve();
       })
       .catch((error) => {
       });
