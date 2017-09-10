@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance as axios } from '../utils/axiosSetup';
 import actionTypes from '../constants';
 
 export function setLoggedInUser(user) {
@@ -8,11 +8,14 @@ export function setLoggedInUser(user) {
    }
 }
 
-export function loginUser() {
+export function getUserInformation() {
   return (dispatch) => {
-    const user = { fullName: 'Test User', email: 'someemail@mail.com', slackHandle: '@wapjude', id: '490340344' };
-    dispatch(setLoggedInUser(user));
-    localStorage.setItem('x-saved-user', JSON.stringify(user));
-    console.log(user);
+    return axios.get('/users/me')
+      .then((user) => {
+        dispatch(setLoggedInUser(user));
+      })
+      .catch((error) => {
+        console.log(error, ' my error')
+      })
   }
 }

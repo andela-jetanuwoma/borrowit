@@ -25,10 +25,11 @@
     padding: 10px;
     display: flex;
 
-    a {
+    span {
       text-align: center;
       margin: auto;
       color: #fff;
+      cursor: pointer;
     }
   }
 }
@@ -49,7 +50,13 @@
       padding: 10px;
       .nav-link {
         color: #617582;
+        line-height: 3.5;
       }  
+      button.btn-logout {
+        line-height: 3.5;
+        cursor: pointer;
+        background: #5940b5;
+      }
     }
   }
 

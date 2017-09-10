@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import '../../assets/styles/dashboard.css';
+import displayRequests from './displayRequests';
 import ReactTooltip from 'react-tooltip'
 import Header from '../commons/Header';
 import Notifications from 'react-notification-system-redux';
@@ -26,6 +28,7 @@ class Dashboard extends Component {
     this.acceptRequest = this.acceptRequest.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
+    this.removeLoader = this.removeLoader.bind(this);
   }
 
   componentDidMount() {
@@ -35,15 +38,19 @@ class Dashboard extends Component {
 
     $('.notification-success')
     this.props.getBorrowRequests()
-      .then(() => {
-        this.setState({ isRequesting: false });
-      });
+
+    setTimeout(this.removeLoader, 3000);
 
     this.props.getLeasedItems()
       .then(() => {
 
       });
   }
+
+  removeLoader() {
+    this.setState({ isRequesting: false });
+  }
+  
 
   componentWillReceiveProps(nextProps) {
     if (nextProps) {
@@ -64,7 +71,6 @@ class Dashboard extends Component {
 
   acceptRequest(request) {
     
-    console.log(request); 
     const notificationOpts = {
       title: 'Great job!',
       children:
@@ -85,7 +91,6 @@ class Dashboard extends Component {
         callback: () => alert('clicked!')
       }
     }
-    console.log(this.context.store);
     this.context.store.dispatch(Notifications.success(notificationOpts));
   }
 
@@ -140,12 +145,16 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   requests: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   getBorrowRequests: PropTypes.func.isRequired,
   acceptBorrowRequest: PropTypes.func.isRequired,
   getLeasedItems: PropTypes.func.isRequired,
   leasedItems: PropTypes.array.isRequired,
+}
+
+Dashboard.defaultProps = {
+  requests: [],
+  user: {},
 }
 
 Dashboard.contextTypes = {
@@ -159,7 +168,6 @@ function mapStateToProps(state) {
     requests: state.borrowRequests.requests,
     leasedItems: state.borrowRequests.leasedItems,
     notifications: state.notifications,
-    
   };
 }
 

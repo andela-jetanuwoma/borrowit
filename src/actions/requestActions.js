@@ -1,4 +1,4 @@
-import axios from '../utils/axiosSetup';
+import { instance as axios } from '../utils/axiosSetup';
 import actionTypes from '../constants';
 
 
@@ -32,9 +32,10 @@ export function getLeasedItemsSuccessful(items) {
 
 export function getBorrowRequests() {
   return (dispatch) => {
-    return axios.get('/api/requests')
+    return axios.get('/requests')
       .then((data) => {
         dispatch(getBorrowRequestsSuccessful(data.data));
+        return Promise.resolve();
       })
       .catch((error) => {
       });
@@ -43,7 +44,7 @@ export function getBorrowRequests() {
 
 export function sendBorrowRequest(item) {
   return (dispatch) => {
-    return axios.post('/api/request', item)
+    return axios.post('/requests', item)
       .then((data) => {
         dispatch(sendBorrowRequestSuccess(data));
       })
@@ -55,24 +56,22 @@ export function sendBorrowRequest(item) {
 
 export function acceptBorrowRequest(request) {
   return (dispatch) => {
-    return axios.post('api/request/1/accept')
+    return axios.post(`/requests/${request.id}/accept`)
       .then(() => {
         dispatch(acceptRequestSuccessful(request));
       })
       .catch((error) => {
-        console.log(error);
       });
   }
 }
 
 export function getLeasedItems() {
   return (dispatch) => {
-    return axios.get('api/requests/1/leased')
+    return axios.get('/requests/leased')
       .then((data) => {
         dispatch(getLeasedItemsSuccessful(data.data));
       })
       .catch((error) => {
-        console.log(error);
       })
   }
 }

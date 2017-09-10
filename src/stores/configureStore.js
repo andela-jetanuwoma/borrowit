@@ -9,9 +9,13 @@ import rootReducer from '../reducers';
  * @param {object} initialState
  * @returns {object} store object
  */
-export default function (initialState) {
+function configureStore(initialState) {
   return createStore(rootReducer,
   initialState,
   applyMiddleware(thunk, reduxImmutableStateInvariant()),
 );
 }
+
+const store = configureStore();
+
+export default store;

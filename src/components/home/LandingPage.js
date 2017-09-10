@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { loginUser } from '../../actions/userActions';
-import Header from '../commons/Header';
+import { Link, browserHistory } from 'react-router';
 
 class LandingPage extends Component {
   constructor(props) {
@@ -12,19 +10,21 @@ class LandingPage extends Component {
     this.state = {
       isAuthenticated: this.props.isAuthenticated,
       user: {...this.props.user},
-      isLoading: false };
+      isLoading: false 
+    };
+
+    this.redirectToLogin = this.redirectToLogin.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.context.router.push('/dashboard');
+    if (this.props.location.query.token) {
+      window.localStorage.setItem('x-borrowIt-auth', this.props.location.query.token);
+      window.location.reload();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isAuthenticated) {
-      this.context.router.push('/dashboard');
-    }
+  redirectToLogin() {
+    window.location = 'https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=80184266784.238539426403&redirect_uri=https://borrow-it-now.herokuapp.com/auth/slack/callback';
   }
 
   render() {
@@ -32,8 +32,14 @@ class LandingPage extends Component {
       <div className="row">
         <div className="main-wrapper">
           <h2>Login to access your account</h2>
-          <div className="login-pane">
-            <Link className="btn btn-primary btn-lg btn-block" onClick={this.props.loginUser}><i className="fa fa-slack"></i> Login with slack</Link>
+          <div className="login-pane">            
+            <span onClick={() => this.redirectToLogin()}>
+              <img alt="Sign in with Slack"
+                height="40"
+                width="172"
+                src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
+                srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" />
+            </span>
           </div>
         </div>
       </div>
@@ -46,15 +52,17 @@ LandingPage.contextTypes = {
 }
 
 LandingPage.propTypes = {
-  user: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
+}
+
+LandingPage.defaultProps = {
+  user: {},
 }
 
 const mapStateToProps = state => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
-   notifications: state.notifications,
+  notifications: state.notifications,
 });
 
 
-export default connect(mapStateToProps, { loginUser })(LandingPage);
+export default connect(mapStateToProps, null)(LandingPage);
