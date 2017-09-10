@@ -37,6 +37,7 @@
 
 .navbar {
   border-bottom: 3px solid #2c343a;
+  background: $primary-color;
   padding: 0px;
   .nav-menu {
     float: right;
@@ -54,6 +55,7 @@
       button.btn-logout {
         line-height: 3.5;
         cursor: pointer;
+        background: #5940b5;
       }
     }
   }
@@ -75,11 +77,23 @@
         }
         .logo-name {
           margin-bottom: 0;
+          font-size: 28px;
+          font-weight: 200;
+          font-family: $font-family;
         }
         .slogan {
-          font-size: 12px;
+          font-size: 11px;
+          color: #9ebdd4;
         }
       }
     }
   }
 }
+.tooltips {
+  max-width: 190px;
+}
+
+.site-color {
+  background: '#2c343a'
+}
+

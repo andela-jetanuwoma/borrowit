@@ -1,65 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 
 
 export default (ComposedComponent) => {
-  /**
-   * Higher order component
-   * protect routes from guest users
-   *
-   * @class RequireAuthentication
-   * @extends {React.Component}
-   */
   class RequireAuthentication extends React.Component {
-    /**
-     *
-     * checks if user is authenticated before mounting
-     *
-     * @memberof RequireAuthentication
-     */
     componentWillMount() {
       if (!this.props.isAuthenticated) {
-        this.props.history.push('/');
-        return (
-          <Redirect
-            to={{
-              pathname: '/',
-            }}
-          />
-        );
+        this.context.router.push('/');
       }
     }
 
-    /**
-     * checks if user is still authenticated after component update
-     *
-     * @param {object} nextProps - new props after update
-     *
-     * @memberof RequireAuthentication - redirect object
-     */
     componentWillUpdate(nextProps) {
       if (!this.props.isAuthenticated || !nextProps.isAuthenticated) {
-        this.props.history.push('/');
-        return (
-          <Redirect
-            to={{
-              pathname: '/',
-              state: { from: this.props.location }
-            }}
-          />
-        );
+        this.context.router.push('/');
       }
     }
 
-    /**
-     * renders component to DOM
-     *
-     * @returns {Object}
-     *
-     * @memberof RequireAuthentication
-     */
+    componentWillReceiveProps(nextProps) {
+      if (!nextProps.isAuthenticated) {
+        this.context.router.push('/');
+      }
+    }
+
     render() {
       return (
         <ComposedComponent {...this.props} {...this.state} />
@@ -77,6 +40,10 @@ export default (ComposedComponent) => {
     isAuthenticated: false,
   };
 
+  RequireAuthentication.contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+  
   const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
   });

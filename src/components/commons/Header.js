@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-// import Notifications from 'react-notification-system-redux';
+import Notifications from 'react-notification-system-redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import logo from '../../assets/images/logo.png';
 import RequestItem from '../requestItem/RequestItem';
+import store from '../../stores/configureStore';
+import { setLoggedInUser } from '../../actions/userActions';
 
 class Header extends Component {
   constructor(props) {
@@ -13,10 +15,19 @@ class Header extends Component {
   }
 
   logout() {
-    localStorage.removeItem['x-borrowIt-auth'];
+    window.localStorage.clear();
+    store.dispatch(setLoggedInUser(null));
   }
 
   render () {
+
+    const style = {
+      NotificationItem: { // Override the notification item
+          DefaultStyle: { // Applied to every notification, regardless of the notification level
+              margin: '10px 5px 2px 1px',
+          },
+      },
+    };
 
     const authLinks = (
       <ul className="navbar-nav">
@@ -33,10 +44,14 @@ class Header extends Component {
         <li className="nav-item">
           <Link className="nav-link" to="#">
             <i className="fa fa-envelope" />
+            <Notifications
+              notifications={this.props.notifications}
+              style={style}
+            />
           </Link>
         </li>
         <li className="nav-item">
-          <button className="btn btn-warning btn-logout" onClick={() => this.logout()}>Logout</button>
+          <button className="btn btn-default btn-logout" onClick={() => this.logout()}>Logout</button>
         </li>
       </ul>
     );
@@ -77,4 +92,4 @@ const mapStateToProps = state => ({
   notifications: state.notifications,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, null)(Header);

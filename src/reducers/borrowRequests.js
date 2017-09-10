@@ -16,6 +16,18 @@ export default function borrowRequests(state = initialState.borrowRequests, acti
         myRequests: [...state.myRequests, action.item]
       };
       
+    case actionTypes.ACCEPT_REQUEST_SUCCESS:
+      return {
+        ...state,
+        requests: state.requests.filter(({ id }) => id !== action.request.id),
+        leasedItems: [...state.leasedItems, action.request]
+      }
+
+    case actionTypes.GET_LEASED_ITEMS_SUCESS:
+      return {
+        ...state,
+        leasedItems: [...action.items],
+      }
     default:
       return state;
   }

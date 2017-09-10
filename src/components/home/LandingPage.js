@@ -19,23 +19,15 @@ class LandingPage extends Component {
   componentDidMount() {
     if (this.props.location.query.token) {
       window.localStorage.setItem('x-borrowIt-auth', this.props.location.query.token);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.isAuthenticated);
-    if (nextProps.isAuthenticated) {
-      this.context.router.push('/requests');
+      window.location.reload();
     }
   }
 
   redirectToLogin() {
     window.location = 'https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=80184266784.238539426403&redirect_uri=https://borrow-it-now.herokuapp.com/auth/slack/callback';
-    
   }
 
   render() {
-    console.log(this.props.isAuthenticated, this.props.user);
     return (
       <div className="row">
         <div className="main-wrapper">
@@ -60,7 +52,10 @@ LandingPage.contextTypes = {
 }
 
 LandingPage.propTypes = {
-  user: PropTypes.object.isRequired,
+}
+
+LandingPage.defaultProps = {
+  user: {},
 }
 
 const mapStateToProps = state => ({
@@ -70,4 +65,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { })(LandingPage);
+export default connect(mapStateToProps, null)(LandingPage);
